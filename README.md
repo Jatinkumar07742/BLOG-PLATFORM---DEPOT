@@ -4,13 +4,9 @@ It is  a blogging platform where users can write and publish their own blogs, si
 This is a complete, tested blog platform — Node.js + Express + MongoDB (Mongoose) + EJS. I actually ran it (rendered every template, booted the server, hit every route) and fixed a real bug I found (EJS 3 requires <%- include('path') %> syntax, not the old <% include path %>).
 What's included:
 
-<img width="782" height="437" alt="image" src="https://github.com/user-attachments/assets/241edae0-0efc-4f82-a443-8b8722d374fc" />
 
 
-
-
-
-<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/7e4e5aba-5c6e-4834-9b10-aca5a4289dfe" />
+<img width="935" height="605" alt="image" src="https://github.com/user-attachments/assets/f0160f6a-8289-44ce-a55c-6b0663b51e5b" />
 
 
 
@@ -22,6 +18,11 @@ Dashboard: "my posts" view with stats
 Search: filter posts by title
 Clean CSS (Medium-inspired), no framework dependency
 .env.example, .gitignore, README.md with setup steps, LICENSE — ready to push straight to GitHub
+
+
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/7e4e5aba-5c6e-4834-9b10-aca5a4289dfe" />
+
+
 
 # BlogSpace — A Medium-like Blogging Platform
 
