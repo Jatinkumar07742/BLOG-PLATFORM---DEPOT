@@ -1,0 +1,45 @@
+<%- include('../partials/header') %>
+
+<div class="dashboard">
+  <div class="dashboard-header">
+    <h1>My Posts</h1>
+    <a href="/posts/new" class="btn-primary">+ New Post</a>
+  </div>
+
+  <% if (posts.length === 0) { %>
+    <p class="empty-state">You haven't written any posts yet. <a href="/posts/new">Write one now</a>.</p>
+  <% } %>
+
+  <table class="dashboard-table">
+    <% if (posts.length > 0) { %>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Published</th>
+          <th>Likes</th>
+          <th>Comments</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+    <% } %>
+    <tbody>
+      <% posts.forEach(post => { %>
+        <tr>
+          <td><a href="/posts/<%= post._id %>"><%= post.title %></a></td>
+          <td><%= post.createdAt.toDateString() %></td>
+          <td><%= post.likes.length %></td>
+          <td><%= post.comments.length %></td>
+          <td class="table-actions">
+            <a href="/posts/<%= post._id %>/edit">Edit</a>
+            <form action="/posts/<%= post._id %>?_method=DELETE" method="POST" class="inline-form"
+                  onsubmit="return confirm('Delete this post?');">
+              <button type="submit" class="link-button-danger">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('../partials/footer') %>

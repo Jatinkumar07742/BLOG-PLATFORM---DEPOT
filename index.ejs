@@ -1,0 +1,37 @@
+<%- include('../partials/header') %>
+
+<div class="hero">
+  <h1>Discover stories, ideas & perspectives</h1>
+  <form action="/" method="GET" class="search-form">
+    <input type="text" name="search" placeholder="Search posts by title..." value="<%= search %>" />
+    <button type="submit">Search</button>
+  </form>
+</div>
+
+<div class="post-list">
+  <% if (posts.length === 0) { %>
+    <p class="empty-state">No posts found. <% if (currentUser) { %><a href="/posts/new">Write the first one!</a><% } %></p>
+  <% } %>
+
+  <% posts.forEach(post => { %>
+    <article class="post-card">
+      <% if (post.coverImage) { %>
+        <img src="<%= post.coverImage %>" alt="<%= post.title %>" class="post-card-img" />
+      <% } %>
+      <div class="post-card-body">
+        <h2><a href="/posts/<%= post._id %>"><%= post.title %></a></h2>
+        <p class="post-meta">
+          By <strong><%= post.author ? post.author.username : 'Unknown' %></strong>
+          &middot; <%= post.createdAt.toDateString() %>
+        </p>
+        <p class="post-excerpt"><%= post.excerpt %></p>
+        <div class="post-stats">
+          <span>&#10084; <%= post.likes.length %></span>
+          <span>&#128172; <%= post.comments.length %></span>
+        </div>
+      </div>
+    </article>
+  <% }) %>
+</div>
+
+<%- include('../partials/footer') %>

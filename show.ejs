@@ -1,0 +1,68 @@
+<%- include('../partials/header') %>
+
+<article class="post-full">
+  <% if (post.coverImage) { %>
+    <img src="<%= post.coverImage %>" alt="<%= post.title %>" class="post-full-img" />
+  <% } %>
+  <h1><%= post.title %></h1>
+  <p class="post-meta">
+    By <strong><%= post.author ? post.author.username : 'Unknown' %></strong>
+    &middot; <%= post.createdAt.toDateString() %>
+    <% if (post.updatedAt > post.createdAt) { %> (edited)<% } %>
+  </p>
+
+  <div class="post-content"><%- post.content.replace(/\n/g, '<br>') %></div>
+
+  <div class="post-actions">
+    <% if (currentUser) { %>
+      <form action="/posts/<%= post._id %>/like" method="POST" class="inline-form">
+        <button type="submit" class="btn-like <%= post.likes.some(id => id.toString() === currentUser._id.toString()) ? 'liked' : '' %>">
+          &#10084; <%= post.likes.length %> <%= post.likes.some(id => id.toString() === currentUser._id.toString()) ? 'Liked' : 'Like' %>
+        </button>
+      </form>
+    <% } else { %>
+      <span>&#10084; <%= post.likes.length %> likes</span>
+    <% } %>
+
+    <% if (currentUser && post.author && currentUser._id.toString() === post.author._id.toString()) { %>
+      <a href="/posts/<%= post._id %>/edit" class="btn-secondary">Edit</a>
+      <form action="/posts/<%= post._id %>?_method=DELETE" method="POST" class="inline-form"
+            onsubmit="return confirm('Are you sure you want to delete this post? This cannot be undone.');">
+        <button type="submit" class="btn-danger">Delete</button>
+      </form>
+    <% } %>
+  </div>
+</article>
+
+<section class="comments-section" id="comments">
+  <h3>Comments (<%= post.comments.length %>)</h3>
+
+  <% if (currentUser) { %>
+    <form action="/posts/<%= post._id %>/comments" method="POST" class="comment-form">
+      <textarea name="text" placeholder="Add a comment..." required maxlength="1000"></textarea>
+      <button type="submit">Post Comment</button>
+    </form>
+  <% } else { %>
+    <p><a href="/auth/login">Log in</a> to leave a comment.</p>
+  <% } %>
+
+  <div class="comment-list">
+    <% post.comments.forEach(comment => { %>
+      <div class="comment">
+        <p class="comment-meta">
+          <strong><%= comment.author ? comment.author.username : 'Unknown' %></strong>
+          &middot; <%= comment.createdAt.toDateString() %>
+        </p>
+        <p class="comment-text"><%= comment.text %></p>
+        <% if (currentUser && comment.author && currentUser._id.toString() === comment.author._id.toString()) { %>
+          <form action="/posts/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST" class="inline-form"
+                onsubmit="return confirm('Delete this comment?');">
+            <button type="submit" class="link-button-danger">Delete</button>
+          </form>
+        <% } %>
+      </div>
+    <% }) %>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>
