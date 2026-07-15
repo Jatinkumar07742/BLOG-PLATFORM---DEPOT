@@ -19,7 +19,9 @@ Comments System: Users can comment on posts to interact.
 Like System: Users can like or unlike posts.
 
 
-<img width="782" height="437" alt="Screenshot 2026-07-15 153615" src="https://github.com/user-attachments/assets/5afcf907-b6e9-40fd-a2f9-7b3ed4db171d" />
+
+<img width="1262" height="608" alt="Screenshot 2026-07-15 155611" src="https://github.com/user-attachments/assets/bb629934-11f3-474f-8797-4ccec5914447" />
+
 
 
 
