@@ -7,6 +7,13 @@ What's included:
 <img width="782" height="437" alt="image" src="https://github.com/user-attachments/assets/241edae0-0efc-4f82-a443-8b8722d374fc" />
 
 
+
+
+
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/7e4e5aba-5c6e-4834-9b10-aca5a4289dfe" />
+
+
+
 Auth: register/login/logout with bcrypt-hashed passwords, sessions stored in MongoDB
 Posts: create, read, edit, delete — only the owner can edit/delete (enforced server-side, not just hidden in the UI)
 Comments: add/delete, only comment owner can delete their own
